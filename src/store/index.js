@@ -39,7 +39,7 @@ export default new Vuex.Store({
     async getAllBlogs({ commit }) {
       try {
         let res = await api.get('blogs')
-        commit("setAllBlogs", res.data.data)
+        commit("setAllBlogs", res.data)
       } catch (error) {
         console.error(error)
       }
@@ -47,7 +47,7 @@ export default new Vuex.Store({
     async createBlog({ commit, dispatch }, blogDeetz) {
       try {
         let res = await api.post('blogs', blogDeetz)
-        commit('addToBlogs', res.data.data)
+        commit('addToBlogs', res.data)
       } catch (error) {
         console.error(error)
       }

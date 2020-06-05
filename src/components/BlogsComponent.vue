@@ -13,9 +13,9 @@
                     </div>
                     <div class="form-group ml-2">
                         <label for="body">Body</label>
-                        <input type="text" class="form-control" name="body" id="body" aria-describedby="body"
-                            placeholder="Body..." v-model="newBlog.body" required />
-                    </div>
+                        <textarea type="text" class="form-control" name="body" id="body" aria-describedby="body"
+                            placeholder="Body..." v-model="newBlog.body" rows="3" required />
+                        </div>
                     <button type="submit" class="btn btn-outline-success">Publish Blog</button>
                     <button type="button" class="btn btn-danger"
                         @click="blogForm = !blogForm; newBlog={}">Cancel</button>
@@ -23,13 +23,14 @@
             </div>
         </div>
         <div class="row">
-            <blog v-for="blog in blogs" :key="blog._id" :blogProp="blog" />
+            <blog v-for="blog in blogs" :key="blog._id" :blog="blog" />
         </div>
     </div>
 </template>
 
 
 <script>
+    import Blog from "./BlogComponent.vue"
     export default {
         name: 'blogs',
         mounted() {
@@ -52,7 +53,9 @@
                 this.newBlog = {}
             }
         },
-        components: {}
+        components: {
+            Blog
+        }
     }
 </script>
 
