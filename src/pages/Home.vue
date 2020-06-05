@@ -1,11 +1,17 @@
 <template>
   <div class="home">
-    <h1>Welcome</h1>
+    <h1>Trail Advisor</h1>
+
+    <blogs />
   </div>
 </template>
 
 <script>
-export default {
-  name: "home",
-};
+  import Blogs from "@/components/BlogsComponent.vue"
+  export default {
+    name: "home",
+    components: {
+      Blogs
+    }
+  };
 </script>

@@ -8,14 +8,21 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     profile: {},
+    blogs: []
   },
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
     },
+    setAllBlogs(state, blogs) {
+      state.blogs = blogs
+    },
+    addToBlogs(state, blog) {
+      state.blogs.push(blog)
+    }
   },
   actions: {
-    setBearer({}, bearer) {
+    setBearer({ }, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
@@ -29,5 +36,21 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async getAllBlogs({ commit }) {
+      try {
+        let res = await api.get('blogs')
+        commit("setAllBlogs", res.data.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async createBlog({ commit, dispatch }, blogDeetz) {
+      try {
+        let res = await api.post('blogs', blogDeetz)
+        commit('addToBlogs', res.data.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
   },
 });
