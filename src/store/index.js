@@ -8,7 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     profile: {},
-    blogs: []
+    blogs: [],
+    activeBlog: {}
   },
   mutations: {
     setProfile(state, profile) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     addToBlogs(state, blog) {
       state.blogs.push(blog)
+    },
+    setActiveBlog(state, blog) {
+      state.activeBlog = blog
     }
   },
   actions: {
@@ -51,6 +55,24 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async getBlogDeetz({ commit }, _id) {
+      try {
+        let res = await api.get('blogs/' + _id)
+        commit("setActiveBlog", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async removeBlog({ commit, dispatch }, _id) {
+      try {
+        let res = await api.delete('blogs/' + _id)
+        router.push({ name: "Home" })
+      } catch (error) {
+        console.error(error)
+      }
     }
-  },
+  }
+
+
 });

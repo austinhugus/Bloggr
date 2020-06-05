@@ -14,7 +14,7 @@
                     <div class="form-group ml-2">
                         <label for="body">Body</label>
                         <textarea type="text" class="form-control" name="body" id="body" aria-describedby="body"
-                            placeholder="Body..." v-model="newBlog.body" rows="3" required />
+                            placeholder="Body..." v-model="newBlog.body" rows="5" cols="100" required />
                         </div>
                     <button type="submit" class="btn btn-outline-success">Publish Blog</button>
                     <button type="button" class="btn btn-danger"
