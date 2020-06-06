@@ -1,7 +1,7 @@
 <template>
     <div class="blog-details container">
         <div>
-            <h1>{{blog.blog.title}}</h1>
+            <h1 v-if="blog.blog.title">{{blog.blog.title}}</h1>
             <h4>By: {{blog.blog.creatorEmail}} <img class="picture" :src="blog.blog.creator.picture"> </h4>
             <h5>{{blog.blog.body}}</h5>
         </div>
@@ -24,7 +24,11 @@
                 return this.$store.state.activeBlog
             }
         },
-        methods: {},
+        methods: {
+            removeBlog() {
+                this.$store.dispatch("removeBlog", this.blog._id)
+            }
+        },
         components: {}
     }
 </script>
