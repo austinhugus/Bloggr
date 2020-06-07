@@ -5,7 +5,8 @@
             <h4>By: {{blog.blog.creatorEmail}} <img class="picture" :src="blog.blog.creator.picture"> </h4>
             <h5>{{blog.blog.body}}</h5>
         </div>
-        <button type="button" class="btn btn-outline-danger" v-if="blog.blog.title" @click="removeBlog">Delete</button>
+        <button type="button" class="btn btn-outline-danger" v-if="blog.blog.title, isCreator"
+            @click="removeBlog">Delete</button>
     </div>
 </template>
 
@@ -22,6 +23,9 @@
         computed: {
             blog() {
                 return this.$store.state.activeBlog
+            },
+            isCreator() {
+                return this.$store.state.profile.name == this.blog.blog.creatorEmail
             }
         },
         methods: {

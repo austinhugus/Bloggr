@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Trail Advisor</h1>
+
     <blogs />
   </div>
 </template>

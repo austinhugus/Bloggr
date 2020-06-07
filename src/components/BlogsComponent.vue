@@ -1,8 +1,9 @@
 <template>
     <div class="blog-component container">
-        <div class="row">
+        <div class="row" v-if="$auth.isAuthenticated">
             <div class="col">
-                <button type="button" class="btn btn-dark" v-if="!blogForm" @click="blogForm = !blogForm">New
+                <button type="button" class="btn btn-dark my-4 d-flex" v-if="!blogForm"
+                    @click="blogForm = !blogForm">New
                     Blog</button>
 
                 <form class="form-inline" v-if="blogForm" @submit.prevent="createBlog">
@@ -16,7 +17,7 @@
                         <textarea type="text" class="form-control" name="body" id="body" aria-describedby="body"
                             placeholder="Body..." v-model="newBlog.body" rows="5" cols="100" required />
                         </div>
-                    <button type="submit" class="btn btn-outline-success">Publish Blog</button>
+                    <button type="submit" class="btn btn-outline-dark">Publish Blog</button>
                     <button type="button" class="btn btn-danger"
                         @click="blogForm = !blogForm; newBlog={}">Cancel</button>
                 </form>
