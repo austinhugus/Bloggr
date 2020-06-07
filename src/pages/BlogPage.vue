@@ -5,7 +5,7 @@
             <h4>By: {{blog.blog.creatorEmail}} <img class="picture" :src="blog.blog.creator.picture"> </h4>
             <h5>{{blog.blog.body}}</h5>
         </div>
-        <button type="button" class="btn btn-outline-danger" @click="removeBlog">Delete</button>
+        <button type="button" class="btn btn-outline-danger" v-if="blog.blog.title" @click="removeBlog">Delete</button>
     </div>
 </template>
 
@@ -26,7 +26,7 @@
         },
         methods: {
             removeBlog() {
-                this.$store.dispatch("removeBlog", this.blog._id)
+                this.$store.dispatch("removeBlog", this.blog.blog._id)
             }
         },
         components: {}
