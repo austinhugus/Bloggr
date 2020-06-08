@@ -25,7 +25,7 @@
         </div>
         <div class="row">
             <blog v-for="blog in blogs" :key="blog._id" :blog="blog" />
-        </div>
+    </div>
     </div>
 </template>
 

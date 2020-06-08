@@ -9,7 +9,9 @@ export default new Vuex.Store({
   state: {
     profile: {},
     blogs: [],
-    activeBlog: {}
+    activeBlog: {},
+    comments: [],
+    activeComment: {}
   },
   mutations: {
     setProfile(state, profile) {
@@ -23,6 +25,12 @@ export default new Vuex.Store({
     },
     setActiveBlog(state, blog) {
       state.activeBlog = blog
+    },
+    addToComments(state, comment) {
+      state.comments.push(comment)
+    },
+    setAllComments(state, comment) {
+      state.activeComment = comment
     }
   },
   actions: {
@@ -68,6 +76,22 @@ export default new Vuex.Store({
       try {
         let res = await api.delete('blogs/' + _id)
         router.push({ name: "Home" })
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async createComment({ commit, dispatch }, commentDetails) {
+      try {
+        let res = await api.get('blogs/' + commentDetails)
+        commit('addToComments', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getAllComments({ commit }) {
+      try {
+        let res = await api.get('comments')
+        commit("setAllComments", res.data)
       } catch (error) {
         console.error(error)
       }
