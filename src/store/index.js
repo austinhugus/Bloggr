@@ -31,7 +31,7 @@ export default new Vuex.Store({
     },
     setAllComments(state, comment) {
       state.activeComment = comment
-    }
+    },
   },
   actions: {
     setBearer({ }, bearer) {
@@ -76,6 +76,14 @@ export default new Vuex.Store({
       try {
         let res = await api.delete('blogs/' + _id)
         router.push({ name: "Home" })
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async editBlog({ commit, dispatch }, _id) {
+      try {
+        let res = await api.put('blogs/' + _id)
+        commit('addToBlogs', res.data)
       } catch (error) {
         console.error(error)
       }

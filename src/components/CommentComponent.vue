@@ -4,10 +4,10 @@
             <ul>
                 <li>
                     <h2>
-                        {{blog.comments.body}}
+                        {{comment.body}}
                     </h2>
                     <p>
-                        - {{blog.comments.creatorEmail}}
+                        - {{comment.creatorEmail}}
                     </p>
                 </li>
             </ul>

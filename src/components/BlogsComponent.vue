@@ -53,6 +53,7 @@
                 this.$store.dispatch("createBlog", { ...this.newBlog })
                 this.newBlog = {}
             }
+
         },
         components: {
             Blog

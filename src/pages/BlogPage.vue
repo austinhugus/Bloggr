@@ -6,9 +6,24 @@
             <h5>{{blog.blog.body}}</h5>
         </div>
         <button type="button" class="btn btn-outline-danger" v-if="isCreator" @click="removeBlog">Delete</button>
-        <div class="row">
-            <comments v-for="comment in comments" :key="blog.id" :comment="comment" />
+        <div>
+            <div class="row">
+                <comments v-for="comment in comments" :key="blog.id" :comment="comment" />
 
+            </div>
+            <button type="button" class="btn btn-outline-primary" v-if="isCreator" @click="editBlog">Edit</button>
+            <form class="form-inline" @submit.prevent="editBlog">
+                <div class="form-group ml-2">
+                    <label for="title">Edit Title</label>
+                    <input type="text" class="form-control" name="title" id="title" aria-describedby="title"
+                        placeholder="Title..." v-model="editBlog.title" required />
+                </div>
+                <div class="form-group ml-2">
+                    <label for="body">Body</label>
+                    <textarea type="text" class="form-control" name="body" id="body" aria-describedby="body"
+                        placeholder="Body..." v-model="editBlog.body" rows="5" cols="100" required />
+                    </div>
+                </form>
         </div>
     </div>
 </template>
@@ -23,7 +38,8 @@
             this.$store.dispatch("getBlogDeetz", this.$route.params.id);
         },
         data() {
-            return {}
+            return {
+            }
         },
         computed: {
             blog() {
@@ -42,6 +58,10 @@
             },
             removeComment() {
                 this.$store.dispatch("removeComment", this.blog.blog._id.comment)
+            },
+            editBlog() {
+                this.$store.dispatch("editBlog", this.$route.params.id),
+                    this.editBlog = { id: this.$route.params.id }
             }
         },
         components: {}
