@@ -80,9 +80,9 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async editBlog({ commit, dispatch }, _id) {
+    async editBlog({ commit, dispatch }, blogData) {
       try {
-        let res = await api.put('blogs/' + _id)
+        let res = await api.put('blogs/' + blogData.id, blogData.editBlog)
         commit('addToBlogs', res.data)
       } catch (error) {
         console.error(error)
